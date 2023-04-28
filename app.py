@@ -19,7 +19,7 @@ datetoday2 = date.today().strftime("%d-%B-%Y")
 
 #### Initializing VideoCapture object to access WebCam
 face_detector = cv2.CascadeClassifier('static/haarcascade_frontalface_default.xml')
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture("http://192.168.45.55:8080/video")
 
 
 #### If these directories don't exist, create them
@@ -104,7 +104,7 @@ def start():
     if 'face_recognition_model.pkl' not in os.listdir('static'):
         return render_template('home.html',totalreg=totalreg(),datetoday2=datetoday2,mess='There is no trained model in the static folder. Please add a new face to continue.') 
 
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture("http://192.168.45.55:8080/video")
     ret = True
     while ret:
         ret,frame = cap.read()
@@ -132,7 +132,7 @@ def add():
     userimagefolder = 'static/faces/'+newusername+'_'+str(newuserid)
     if not os.path.isdir(userimagefolder):
         os.makedirs(userimagefolder)
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture("http://192.168.45.55:8080/video")
     i,j = 0,0
     while 1:
         _,frame = cap.read()
